@@ -1,12 +1,28 @@
 package app;
 
+/**
+ * MinimaxAIPlayer class extend abstract class Player implements Global Interface
+ * Advanced AI Player
+ * @author Uygur Tepe 105006877
+ */
 public class MiniMaxAIPlayer extends player implements global{
     
-	public MiniMaxAIPlayer(board gameBoard, int playerSymbol, String playerName) {
+    /** 
+     * Overloaded Constructor of HumanPlayer Class
+     * @param gameBoard
+     * @param playerSymbol
+     * @param playerName
+     * call super constructor
+     */
+    public MiniMaxAIPlayer(board gameBoard, int playerSymbol, String playerName) {
         super(gameBoard, playerSymbol, playerName);
     }
 
-    @Override
+    /** 
+     * @Override of abstract method play extended from Player Class
+     * method to input which move to play
+     * @param gameBoard
+     */
     public void play(board gameBoard) {
         super.gameBoard = gameBoard;
         boolean validMove;
@@ -20,6 +36,10 @@ public class MiniMaxAIPlayer extends player implements global{
         }while (!validMove);
     }
 
+    /** 
+     * Checks if there are remaining moves left on the board
+     * @return boolean
+     */
     private boolean isRemaingMoves(){
         for(int i = 0; i < 3; i++){
             for(int j = 0; j < 3; j++){
@@ -29,7 +49,11 @@ public class MiniMaxAIPlayer extends player implements global{
         }
         return false;
     }
-
+    
+    /** 
+     * Method to evaluate the positibities of moves
+     * @return int
+     */
     private int evaluatePossibilities(){
         int opponentSymbol;
         if(this.playerSymbol == 3){
@@ -68,6 +92,13 @@ public class MiniMaxAIPlayer extends player implements global{
         return 0;
     }
 
+    /** 
+     * Minimax Game theory Algorithm
+     * Recursively looks through each possible move and finds bestCase for each senario
+     * @param depth
+     * @param isMax
+     * @return bestCase 
+     */
     private int minimax(int depth, boolean isMax){
         int score = evaluatePossibilities();
 
@@ -121,7 +152,11 @@ public class MiniMaxAIPlayer extends player implements global{
             return bestCase;
         }
     }
-
+    
+    /**
+     * Method which finds best possible move based on minimax algorithm
+     * @return bestMove
+     */
     private int findBestMove(){
         int bestCase = -1000;
         int counter = 0;
@@ -144,10 +179,7 @@ public class MiniMaxAIPlayer extends player implements global{
                 }
             }
         }
-        //System.out.println(bestMove);
         return bestMove;
     }
-
-
     
 }

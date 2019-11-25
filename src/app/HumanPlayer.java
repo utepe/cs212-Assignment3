@@ -2,13 +2,29 @@ package app;
 
 import java.util.Scanner;
 
+/**
+ * HumanPlayer class extend abstract class Player implements Global Interface
+ * @author Uygur Tepe 105006877
+ */
 public class HumanPlayer extends player implements global{
 
-	public HumanPlayer(board gameBoard, int playerSymbol, String playerName) {
+    /** 
+     * Overloaded Constructor of HumanPlayer Class
+     * @param gameBoard
+     * @param playerSymbol
+     * @param playerName
+     * call super constructor
+     */
+    public HumanPlayer(board gameBoard, int playerSymbol, String playerName) {
         super(gameBoard, playerSymbol, playerName);
 	}
-
-    @Override
+ 
+    /** 
+     * @Override of abstract method play extended from Player Class
+     * Method which asks user which move they want to play
+     * checks if selected move is valid
+     * @param gameBoard
+     */
     public void play(board gameBoard) {
         Scanner scan = new Scanner(System.in);
         super.gameBoard = gameBoard;
@@ -22,7 +38,5 @@ public class HumanPlayer extends player implements global{
             }
         }while (!validMove);
     }
-    
-
 
 }

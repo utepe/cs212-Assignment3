@@ -2,13 +2,28 @@ package app;
 
 import java.util.Random;
 
+/**
+ * EasyAIPlayer class extend abstract class Player implements Global Interface
+ * @author Uygur Tepe 105006877
+ */
 public class EasyAIPlayer extends player implements global{
 
+    /** 
+     * Overloaded Constructor of EasyAIPlayer class
+     * @param gameBoard
+     * @param playerSymbol
+     * @param playerName
+     * calls super constructor
+     */
     public EasyAIPlayer(board gameBoard, int playerSymbol, String playerName) {
         super(gameBoard, playerSymbol, playerName);
     }
 
-    @Override
+    /** 
+     * @Override of abstract method play extended from Player Class
+     * method to input which move to play
+     * @param gameBoard
+     */
     public void play(board gameBoard) {
         super.gameBoard = gameBoard;
         boolean validMove;
@@ -21,7 +36,12 @@ public class EasyAIPlayer extends player implements global{
             }
         }while (!validMove);
     }
-
+  
+    /** 
+     * Method to get a random move based on the empty spaced avaiable
+     * @param gameBoard
+     * @return a random valid move
+     */
     public int getRandomMove(board gameBoard){
         boolean moveOK = false;
         do{

@@ -2,13 +2,21 @@ package app;
 
 import java.util.*;
 
+/**
+ * game Class implements Global Interface
+ * @author Uygur Tepe 105006877
+ */
 class game implements global{
     private boolean done;
     private board gameBoard;
     private player playerO;
     private player playerX; 
     private int turn;
-
+    
+    /** 
+     * Defualt Constructor of Game
+     * Main Menu of Game
+     */
     public game(){
         this.done = false;
         this.gameBoard = new board();
@@ -20,7 +28,6 @@ class game implements global{
 
         System.out.println("xoxo TicTacToe xoxo");
         System.out.println("--------------------");
-        //System.out.println("");
 
         while(!this.done){
             System.out.println("Game: Please select a game option: ");
@@ -87,6 +94,10 @@ class game implements global{
         }
     }
 
+    /**
+     * Start Method,
+     * After players are made and version of game is selected game starts
+     */
     public void start(){
         Random coin = new Random();
         int turnChanger = 0;

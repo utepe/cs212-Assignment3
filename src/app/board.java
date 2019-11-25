@@ -1,9 +1,16 @@
 package app;
 
+/**
+ * Board Class implements Global Interface
+ * @author Uygur Tepe 105006877
+ */
 public class board implements global{
     public blocks[][] blocks;
     private int state;
 
+    /** 
+     * Default Constructor of Board Class 
+     */
     public board(){
         this.state = 0;
         this.blocks = new blocks[3][3];
@@ -14,6 +21,10 @@ public class board implements global{
         }
     }
 
+    /**
+     * Method to display initial generated board
+     * Non-Player Interacted Board
+     */
     public void displayBoard(){
         for(int i = 0; i < 3; i++){
             System.out.println("   |   |    ");
@@ -32,6 +43,9 @@ public class board implements global{
         }
     }
 
+    /**
+     * Method which displays the player interacted board
+     */
     public void displayPlayerSectionBoard(){
         int boxVal = 1;
         for(int i = 0; i < 3; i++){
@@ -57,10 +71,20 @@ public class board implements global{
         }
     }
 
+    
+    /**
+     * Getter method to call the updateState method 
+     * @return calling UpdateState method
+     */
     public int getState(){
         return updateState();
     }
 
+    
+    /**
+     * Method which updates the state of the board 
+     * @return current instance of state
+     */
     public int updateState(){
         int state = checkRow(0) + checkRow(1) + checkRow(2) + checkCol(0) + checkCol(1) + checkCol(2) + checkDiagonals();
         if (state != 0) {
@@ -72,6 +96,12 @@ public class board implements global{
         return this.state;
     }
 
+    
+    /** 
+     * Method to check the state of each column, and see if there is a playable move or if a player has won
+     * @param col
+     * @return current instance of state
+     */
     public int checkCol(int col){
         if(this.blocks[0][col].getState() != 0 && this.blocks[0][col].getState() == this.blocks[1][col].getState()
             && this.blocks[1][col].getState() == this.blocks[2][col].getState()){
@@ -80,6 +110,12 @@ public class board implements global{
         return 0;
     }
 
+    
+    /** 
+     * Method to check the state of each row, and see if there is a playable move or if a player has won
+     * @param row
+     * @return current instance of state
+     */
     public int checkRow(int row){
         if(this.blocks[row][0].getState() != 0 && this.blocks[row][0].getState() == this.blocks[row][1].getState()
         && this.blocks[row][1].getState() == this.blocks[row][2].getState()){
@@ -88,6 +124,11 @@ public class board implements global{
         return 0;
     }
 
+    
+    /**
+     * Method to check the state of each diagonal, and see if there is a playable move or if a player has won
+     * @return int
+     */
     public int checkDiagonals(){
         if(this.blocks[0][0].getState() != 0 && this.blocks[0][0].getState() == this.blocks[1][1].getState()
         && this.blocks[1][1].getState() == this.blocks[2][2].getState()){
@@ -100,6 +141,11 @@ public class board implements global{
         return 0;
     }
 
+    
+    /**
+     * Method to check if there is an empty block left, or if there is draw with all blocked filled 
+     * @return new state of the board, either draw or empty
+     */
     public int checkDraw(){
         for(int i = 0; i < 3; i++){
             for(int j = 0; j < 3; j++){
@@ -110,6 +156,13 @@ public class board implements global{
         return 1;
     }
 
+    
+    /** 
+     * Method to make a move
+     * @param i, integer of the position where the move shall be made
+     * @param state, state of the player making the move
+     * @return true if move made is a possible move, else false
+     */
     public boolean makeMove(int i, int state){
         int rowPos, colPos;
         switch (i) {
