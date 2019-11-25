@@ -13,4 +13,8 @@ public abstract class player {
     
     public abstract void play(board gameBoard);
     
+    @Override
+    public String toString() {
+        return this.playerName;
+    }
 }
